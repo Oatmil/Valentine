@@ -49,6 +49,7 @@
      <Compile Include="Assets\Script\CharacterScript\CharacterMovement.cs" />
      <Compile Include="Assets\Script\CharacterScript\DmgScript.cs" />
      <Compile Include="Assets\Script\CharacterScript\PickUps.cs" />
+     <Compile Include="Assets\Script\GameManager.cs" />
      <Compile Include="Assets\Script\PickUpsManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

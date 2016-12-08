@@ -15,6 +15,11 @@ public class DmgScript : MonoBehaviour {
             Char1.b_Stun = true;
             Char1.t_StunTime = 0;
             Char1.i_Health -= SelfChar.i_Damage;
+            if (Char1.i_Health <= 0)
+            {
+                SelfChar.i_Score++;
+                KillChar(col.gameObject);
+            }
             SelfChar.i_Damage = 0;
             CalculateDir(col);
             col.transform.GetComponent<Rigidbody2D>().AddForce(new Vector3(SelfChar.v_SlamKnockBack.x * i_FlipDir, SelfChar.v_SlamKnockBack.y, SelfChar.v_SlamKnockBack.z), ForceMode2D.Impulse);
@@ -33,5 +38,11 @@ public class DmgScript : MonoBehaviour {
         {
             i_FlipDir = -1;
         }
+    }
+
+    void KillChar(GameObject character)
+    {
+        character.transform.position = new Vector3(0.0f, 25f, 0.0f);
+        character.GetComponent<CharacterMovement>().i_Health = 10;
     }
 }

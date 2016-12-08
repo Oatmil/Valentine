@@ -22,6 +22,6 @@ public class CameraScript : MonoBehaviour {
             tempPos += Obj.transform.position / L_CharcList.Count;
         }
         transform.position = Vector3.Lerp(transform.position, tempPos, 0.5f);
-        tempPos = new Vector3(0.0f, 0.0f, -10);
+        tempPos = new Vector3(0.0f, 8.0f, -10);
     }
 }

@@ -52,6 +52,8 @@ public class CharacterMovement : MonoBehaviour {
     Animator anim;
     Vector3 LclScalling;
 
+    public int i_Score;
+
     void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
@@ -69,7 +71,10 @@ public class CharacterMovement : MonoBehaviour {
 
     void Update()
     {
+        // check the image to scale
         FlipImage();
+
+        // Input jumping and slamming part
         if (b_Stun)
             Stun();
         else
@@ -82,7 +87,7 @@ public class CharacterMovement : MonoBehaviour {
                     Slaming();
             }
 
-            if (b_Ground)
+            if (b_Ground || b_TouchWall)
             {
                 m_HurtBox.SetActive(false);
             }
@@ -103,10 +108,10 @@ public class CharacterMovement : MonoBehaviour {
         transform.localScale = new Vector3(LclScalling.x * XScl, LclScalling.y, LclScalling.z);
     }
 
-    public void Mods()
+    public void Mods() // public function for pickups to modify cahracter
     {
         JumpForce = new Vector3(JumpForce.x * i_JumpMod, JumpForce.y * i_JumpMod, JumpForce.z);
-        m_MoveSpeed = m_MoveSpeed * i_SpeedMod;
+        m_MoveSpeed = m_TempMove * i_SpeedMod;
         anim.SetTrigger("Eat");
     }
 
@@ -205,7 +210,13 @@ public class CharacterMovement : MonoBehaviour {
 
     void SetScoreText()
     {
-        t_uiTxt.text = "Health " + i_Health;
+        t_uiTxt.text =
+            "Score " + i_Score +
+            "\nHealth " + i_Health +
+            "\nDamage " + i_Damage +
+            "\nSpeed " + i_SpeedMod + " Multi" +
+            "\nJump "+ i_JumpMod + " Multi"
+            ;
     }
 
     void ResetGravity()
